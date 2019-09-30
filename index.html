@@ -6,13 +6,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title></title>
 <style type="text/css">
-.activityModel { margin: 5px; width: 95px; height: 95px; background: red; position: absolute; }
-.forecastModel { margin: 2.5px; width: 47.5px; height: 47.5px; background: yellow; position: absolute; }
-.stationaryModel { margin: 5px; width: 95px; height: 95px; background: gray; position: absolute; }
-.controlModel { margin: 25px; width: 300px; height: 300px; background: #ADD8E6; position: absolute; text-align: center; font-size: 50pt; line-height: 50px; }
+.activityModel { margin: 1px; width: 19px; height: 19px; background: red; position: absolute; }
+.forecastModel { margin: 0.5px; width: 9.5px; height: 9.5px; background: yellow; position: absolute; }
+.stationaryModel { margin: 1px; width: 19px; height: 19px; background: gray; position: absolute; }
+.controlModel { margin: 5px; width: 60px; height: 60px; background: #ADD8E6; position: absolute; text-align: center; font-size: 10pt; line-height: 50px; }
 .container { top: 0px; left: 0px; background: black; position: absolute; }
-.info { top: 0px; position: absolute; font-size: 50pt; word-break: break-all; }
-.score { width: 400px; height: 100px; font-size: 100pt; text-align: right; color: white; position: absolute; }
+.info { top: 0px; position: absolute; font-size: 10pt; word-break: break-all; }
+.score { width: 80px; height: 20px; font-size: 10pt; text-align: right; color: white; position: absolute; }
 </style>
 <script type="text/javascript">
 var tetris;
@@ -20,9 +20,9 @@ var container;
 var intervalId;
 var intervalId2;
 var speed = 600;
-var size = 100;
-var forecastSize = 50;
-var controlSize = 325;
+var size = 20;
+var forecastSize = 10;
+var controlSize = 65;
 var rowCount = 18;
 var colCount = 10;
 var announcement = 6;
@@ -213,6 +213,8 @@ bgDiv.onclick = function() { toggleInterval(); };
 anDiv.innerHTML = "玩法说明：<br/>瞬落：'空格'<br/>暂停：'回车'<br/>暂停：'点击方块'<br/>旋转：'上方向键'";
 }
 
+// 加入作者信息
+anDiv.innerHTML = anDiv.innerHTML + '<br/><br/>作者：stone<br/>微博：<a href="http://weibo.com/605494869">weibo.com/605494869</a>';
 // 清空积分
 this.score = 0;
 }
