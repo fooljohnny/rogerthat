@@ -18,13 +18,21 @@
     }
   </style>
   <script>
-    function btnClick() {
+    function btnClick1() {
       var t = document.createElement("textarea");
       t.innerText = "asdflkjasldkfjlasjdf",
       document.body.appendChild(t),
       t.select(),
       document.execCommand("Copy"),
       t.style.display = "none"
+    }
+    
+    function btnClick2() {
+      var t = document.createElement("textarea");
+      t.innerText = "xxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      document.body.appendChild(t),
+      t.select(),
+      document.execCommand("Copy")
     }
   </script>
 </head>
@@ -49,7 +57,11 @@
   </div>
   
   <div id="btn1">
-    <button type="button" onclick="btnClick()">Click Me!</button>
+    <button type="button" onclick="btnClick1()">Click btn1!</button>
+  </div>
+  
+  <div id="btn2">
+    <button type="button" onclick="btnClick2()">Click btn2!</button>
   </div>
     
   
@@ -65,7 +77,7 @@
        <span id="span9">&nbsp;&nbsp;ZZZZZZZZZZZZZZZZZZZZZZZZ</span>
      </p>
   </div>
-
+  
   <iframe src="https://www.example.com/" height="300" style="border:1px solid black;"></iframe>
   <div id="div5">
     <p>place holder</p>
