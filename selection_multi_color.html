@@ -35,10 +35,16 @@
       document.execCommand("Copy")
     }
     
+    var g_flag = 0;
     function onTouchStart() {
       console.log("lalalal")
+      g_flag = !g_flag;
       var p2 = document.getElementById("p2");
-      p2.innerHTML = "<span id=\"span1\">&nbsp;&nbsp;&nbsp;&nbsp;Paragraph&nbsp;1&nbsp;XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</span><span id=\"span2\">&nbsp;&nbsp;ZZZZZZZZZZZZZZZZZZZZZZZZ</span>";
+      if (g_flag == 0) {
+        p2.innerHTML = "<span id=\"span1\">&nbsp;&nbsp;&nbsp;&nbsp;Paragraph&nbsp;1&nbsp;XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</span><span id=\"span2\">&nbsp;&nbsp;ZZZZZZZZZZZZZZZZZZZZZZZZ</span>";
+      } else {
+        p2.innerHTML = "<span id=\"span1111\">&nbsp;&nbsp;&nbsp;&nbsp;Paragraph&nbsp;1&nbsp;XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</span><span id=\"span22222\">&nbsp;&nbsp;ZZZZZZZZZZZZZZZZZZZZZZZZ</span>";
+      }
     }
     window.onload = function() {
       var p2 = document.getElementById("p2");
