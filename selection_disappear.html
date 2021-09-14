@@ -42,6 +42,9 @@
       } else {
         target.setAttribute("class", "hwb-atlas__text scrollbar show-scroll-bar");
         target.innerHTML = "<span>1/10</span><span class=\"hwb-atlas-des\"> 5月8日，陕西紫阳县洞河镇米溪教学点的师生们在校园里上体育课。（无人机拍摄）这个教学点现有12名学生，3名老师。在大巴山深处的陕西省安康市紫阳县偏远乡村，学龄儿童就近上学是许多家长的心愿。</span>";
+        setTimeout(function(){
+          target.setAttribute("class", "hwb-atlas__text scrollbar"); 
+        }, 2e3);
       }
     }
     window.onload = function() {
