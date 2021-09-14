@@ -18,6 +18,9 @@
     }
   </style>
   <script>
+    function() {
+      div1
+    }
     function btnClick1() {
       var t = document.createElement("textarea");
       t.innerText = "asdflkjasldkfjlasjdf",
@@ -33,6 +36,14 @@
       document.body.appendChild(t),
       t.select(),
       document.execCommand("Copy")
+    }
+    
+    function onTouchStart() {
+      console.log("lalalal")
+    }
+    function() {
+      var p2 = document.getElementById("p2");
+      p2.addEventListener("touchstart", onTouchStart, false)
     }
   </script>
 </head>
