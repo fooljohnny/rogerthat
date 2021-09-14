@@ -1,0 +1,61 @@
+<html>
+<head>
+  <title>Text Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0"> 
+  <style>
+     .hwb-atlas__textbox {
+        background: rgba(0,0,0,.5);
+        bottom: 0;
+        color: #fff;
+        font-size: .17rem;
+        left: 0;
+        line-height: 1.7;
+        padding: .16rem;
+        position: absolute;
+        right: 0;
+        white-space: normal;
+        z-index: 2
+    }
+
+    .hwb-atlas__textbox {
+        background: rgba(0,0,0,0)
+    }
+
+    .show-scroll-bar::-webkit-scrollbar {
+        width: .04rem
+    }
+
+    .show-scroll-bar::-webkit-scrollbar-thumb {
+        background-color: hsla(0,0%,100%,.5);
+        border-radius: .02rem
+    }
+  </style>
+  <script>
+    var g_flag = 0;
+    function onTouchStart() {
+      console.log("onTouchStart")
+      g_flag = !g_flag;
+      var target = document.getElementsByClassName('hwb-atlas__textbox')[0].firstChild;
+      if (g_flag == 0) {
+        target.setAttribute("class", "hwb-atlas__text scrollbar");
+        target.innerHTML = "<span>1/10</span><span class=\"hwb-atlas-des\"> 5月8日，陕西紫阳县洞河镇米溪教学点的师生们在校园里上体育课。（无人机拍摄）这个教学点现有12名学生，3名老师。在大巴山深处的陕西省安康市紫阳县偏远乡村，学龄儿童就近上学是许多家长的心愿。</span>";
+      } else {
+        target.setAttribute("class", "hwb-atlas__text scrollbar show-scroll-bar");
+        target.innerHTML = "<span>1/10</span><span class=\"hwb-atlas-des\"> 5月8日，陕西紫阳县洞河镇米溪教学点的师生们在校园里上体育课。（无人机拍摄）这个教学点现有12名学生，3名老师。在大巴山深处的陕西省安康市紫阳县偏远乡村，学龄儿童就近上学是许多家长的心愿。</span>";
+      }
+    }
+    window.onload = function() {
+      var target = document.getElementsByClassName('hwb-atlas__textbox')[0].firstChild;
+      target.addEventListener("touchstart", onTouchStart, false)
+    };
+  </script>
+</head>
+<body>
+  <div class="hwb-atlas__textbox" style="width: auto;">
+    <div class="hwb-atlas__text scrollbar">
+      <span>1/10</span>
+      <span class="hwb-atlas-des"> 5月8日，陕西紫阳县洞河镇米溪教学点的师生们在校园里上体育课。（无人机拍摄）这个教学点现有12名学生，3名老师。在大巴山深处的陕西省安康市紫阳县偏远乡村，学龄儿童就近上学是许多家长的心愿。</span>
+    </div>
+  </div>
+</body>
+</html>
