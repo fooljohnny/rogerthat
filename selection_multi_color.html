@@ -16,6 +16,15 @@
       padding-left: 17px;
       padding-right: 17px;
     }
+    
+    .show-scroll-bar::-webkit-scrollbar {
+        width: .04rem
+    }
+
+    .show-scroll-bar::-webkit-scrollbar-thumb {
+        background-color: hsla(0,0%,100%,.5);
+        border-radius: .02rem
+    }
   </style>
   <script>
     function btnClick1() {
@@ -41,9 +50,9 @@
       g_flag = !g_flag;
       var p2 = document.getElementById("p2");
       if (g_flag == 0) {
-        p2.innerHTML = "<span id=\"span1\">&nbsp;&nbsp;&nbsp;&nbsp;Paragraph&nbsp;1&nbsp;XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</span><span id=\"span2\">&nbsp;&nbsp;ZZZZZZZZZZZZZZZZZZZZZZZZ</span>";
+        p2.innerHTML = "<span class=\"show-scroll-bar\">&nbsp;&nbsp;&nbsp;&nbsp;Paragraph&nbsp;1&nbsp;XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</span><span class=\"show-scroll-bar\">&nbsp;&nbsp;ZZZZZZZZZZZZZZZZZZZZZZZZ</span>";
       } else {
-        p2.innerHTML = "<span id=\"span1111\">&nbsp;&nbsp;&nbsp;&nbsp;Paragraph&nbsp;1&nbsp;XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</span><span id=\"span22222\">&nbsp;&nbsp;ZZZZZZZZZZZZZZZZZZZZZZZZ</span>";
+        p2.innerHTML = "<span class=\"\">&nbsp;&nbsp;&nbsp;&nbsp;Paragraph&nbsp;1&nbsp;XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</span><span class=\"\">&nbsp;&nbsp;ZZZZZZZZZZZZZZZZZZZZZZZZ</span>";
       }
     }
     window.onload = function() {
