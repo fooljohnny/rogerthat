@@ -21,4 +21,11 @@
 <p>Hold down the Ctrl (windows) or Command (Mac) button to select multiple options.</p>
 
 </body>
+<script>
+noContext = document.getElementById('noContextMenu');
+noContext.addEventListener('contextmenu', e => {
+  console.log("trigger contextmenu");
+  e.preventDefault();
+});
+  </script>
 </html>
