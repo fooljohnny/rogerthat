@@ -1,0 +1,43 @@
+function main() {
+function v4(v5,v6,v7,v8) {
+    %VerifyType("number");
+    v8.toString = v8;
+    return v5;
+}
+for (let v9 = 0; v9 < 100; v9++) {
+    const v10 = v9 == 99;
+    const v11 = v4(4096,v10,"unscopables",v4);
+}
+// gc();
+}
+// %NeverOptimizeFunction(main);
+main();
+// CRASH INFO
+// ==========
+// TERMSIG: 5
+// STDERR:
+// #
+// # Fatal error in ../../v8/src/compiler/verifier.cc, line 95
+// # GraphError: node #43:AssertType[HeapConstant(0x55baa7f5c0c8 {0x2c150800509d <String[6]: #number>})] does not produce value output used by node #58:AssertType[HeapConstant(0x55baa7f5c0c8 {0x2c150800509d <String[6]: #number>})]
+// #
+// #
+// #
+// #FailureMessage Object: 0x7fff96d33e80
+// ==== C stack trace ===============================
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x5ef882) [0x55baa3aa0882]
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x5ee427) [0x55baa3a9f427]
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x5e1d3e) [0x55baa3a92d3e]
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x210c5aa) [0x55baa55bd5aa]
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x2105cd1) [0x55baa55b6cd1]
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x210caff) [0x55baa55bdaff]
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x1c92703) [0x55baa5143703]
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x1c8f45f) [0x55baa514045f]
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x1c8e18d) [0x55baa513f18d]
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x7a6b4f) [0x55baa3c57b4f]
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x7b5312) [0x55baa3c66312]
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x7b8b3c) [0x55baa3c69b3c]
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x143fb53) [0x55baa48f0b53]
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x14385b7) [0x55baa48e95b7]
+//     [0x2c1507ed9738]
+// STDOUT:
+// ARGS: /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8 --expose-gc --future --harmony --assert-types --harmony-rab-gsab --harmony-struct --allow-natives-syntax --interrupt-budget=1000 --fuzzing
