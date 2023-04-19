@@ -1,0 +1,48 @@
+function main() {
+function v0(v1,v2,v3) {
+    const v4 = delete v2[0];
+    %VerifyType(v4);
+    for (let v5 = 0; v5 < 100; v5++) {
+    }
+    return v2;
+}
+for (let v6 = 0; v6 < 100; v6++) {
+    const v7 = v0(v6,v0);
+}
+// gc();
+}
+// %NeverOptimizeFunction(main);
+main();
+// CRASH INFO
+// ==========
+// TERMSIG: 5
+// STDERR:
+// #
+// # Fatal error in ../../v8/src/compiler/node-properties.h, line 93
+// # Check failed: index < node->op()->ControlInputCount() (0 vs. 0).
+// #
+// #
+// #
+// #FailureMessage Object: 0x7ffef544f130
+// ==== C stack trace ===============================
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x5ef882) [0x55fb7dabf882]
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x5ee427) [0x55fb7dabe427]
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x5e1d3e) [0x55fb7dab1d3e]
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x1e16b61) [0x55fb7f2e6b61]
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x20a722a) [0x55fb7f57722a]
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x20693ba) [0x55fb7f5393ba]
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x209abfa) [0x55fb7f56abfa]
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x206e968) [0x55fb7f53e968]
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x20678e0) [0x55fb7f5378e0]
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x1cab2a0) [0x55fb7f17b2a0]
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x1c9391d) [0x55fb7f16391d]
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x1c8f404) [0x55fb7f15f404]
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x1c8e18d) [0x55fb7f15e18d]
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x7a6b4f) [0x55fb7dc76b4f]
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x7b5312) [0x55fb7dc85312]
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x7b8b3c) [0x55fb7dc88b3c]
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x143fb53) [0x55fb7e90fb53]
+//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x14385b7) [0x55fb7e9085b7]
+//     [0x1bd307ed9738]
+// STDOUT:
+// ARGS: /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8 --expose-gc --future --harmony --assert-types --harmony-rab-gsab --harmony-struct --allow-natives-syntax --interrupt-budget=1000 --fuzzing
