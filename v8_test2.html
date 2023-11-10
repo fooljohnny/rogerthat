@@ -1,3 +1,4 @@
+<script>
 function main() {
 for (let v1 = 0; v1 < 100; v1++) {
     function v3(v4,v5,v6,v7) {
@@ -13,39 +14,11 @@ for (let v1 = 0; v1 < 100; v1++) {
     }
     const v16 = v8(v3,undefined,v3);
 }
-gc();
+// gc();
 }
-%NeverOptimizeFunction(main);
+// %NeverOptimizeFunction(main);
 main();
-// CRASH INFO
-// ==========
-// TERMSIG: 5
-// STDERR:
-// #
-// # Fatal error in ../../v8/src/compiler/simplified-lowering-verifier.cc, line 38
-// # SimplifiedLoweringVerifierError: verified type Range(3, 134217726) of node #569:Int32Add does not match with type Range(3, 134217725) assigned during lowering
-// #
-// #
-// #
-// #FailureMessage Object: 0x7ffd4fb22ff0
-// ==== C stack trace ===============================
-//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x5f04d2) [0x55ec3502f4d2]
-//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x5ef007) [0x55ec3502e007]
-//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x5e260e) [0x55ec3502160e]
-//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x20bc480) [0x55ec36afb480]
-//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x20bc4e9) [0x55ec36afb4e9]
-//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x20be051) [0x55ec36afd051]
-//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x2072804) [0x55ec36ab1804]
-//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x206b3e8) [0x55ec36aaa3e8]
-//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x1cae3e0) [0x55ec366ed3e0]
-//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x1c96a5d) [0x55ec366d5a5d]
-//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x1c92544) [0x55ec366d1544]
-//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x1c912cd) [0x55ec366d02cd]
-//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x7a7d6f) [0x55ec351e6d6f]
-//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x7b64d2) [0x55ec351f54d2]
-//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x7b9cfc) [0x55ec351f8cfc]
-//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x14421a3) [0x55ec35e811a3]
-//     /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8(+0x143ac07) [0x55ec35e79c07]
-//     [0x254307ed9738]
-// STDOUT:
-// ARGS: /usr1/huawei/HwBrowserEngine99_Fuzzilli/codes/src/out/d8/d8 --expose-gc --future --harmony --assert-types --harmony-rab-gsab --harmony-struct --allow-natives-syntax --interrupt-budget=1000 --fuzzing
+</script>
+<body>
+    <p> This is a v8 fuzzer test case!</p>
+</body>
