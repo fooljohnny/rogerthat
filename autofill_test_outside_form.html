@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Test Page</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+            max-width: 300px;
+            width: 100%;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Personal Information(autocomplete)</h2>
+        <form>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" autocomplete="email">
+            </div>
+        </form>
+
+        <h2>Select Your Interests(datalist)</h2>
+        <form>
+            <div class="form-group">
+                <label for="interests">Interests</label>
+                <input list="interests-list" id="interests" name="interests">
+                <datalist id="interests-list">
+                    <option value="Sports">
+                    <option value="Music">
+                    <option value="Travel">
+                    <option value="Reading">
+                    <option value="Cooking">
+                    <option value="Technology">
+                    <option value="Movies">
+                </datalist>
+            </div>
+        </form>
+		
+		<h2>Login(autofill tests outside of the form tag)</h2>
+		<div>
+            <div class="form-group">
+                <label for="username3">Username</label>
+                <input type="text" id="username3" name="username" autocomplete="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password3">Password</label>
+                <input type="password" id="password3" name="password" autocomplete="current-password" required>
+            </div>
+            <button type="submit">Login</button>
+        </div>
+    </div>
+</body>
+</html>
