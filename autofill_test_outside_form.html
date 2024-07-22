@@ -70,17 +70,21 @@
             </div>
         </form>
 		
-		<h2>Login(autofill tests outside of the form tag)</h2>
-		<div>
+	<h2>Login(autofill tests outside of the form tag)</h2>
+	<div>
+	    <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="text" id="phone" name="phone" required>
+            </div>
             <div class="form-group">
                 <label for="username3">Username</label>
-                <input type="text" id="username3" name="username" autocomplete="username" required>
+                <input type="text" id="username3" name="username" required>
             </div>
             <div class="form-group">
                 <label for="password3">Password</label>
-                <input type="password" id="password3" name="password" autocomplete="current-password" required>
+                <input type="password" id="password3" name="password" required>
             </div>
-            <button type="submit">Login</button>
+            <button id="submit3" type="submit">Login</button>
         </div>
     </div>
 </body>
